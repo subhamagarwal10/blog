@@ -1,0 +1,25 @@
+﻿p
+{
+	font-size:20px;
+}
+#img1
+{
+	width:200px;
+	height:auto;
+	float:left;
+	margin-right:10px;
+}
+#connect li
+{
+	list-style:none;
+
+}
+#connect li
+{
+	float:left;
+}
+#connect li img
+{
+	height:50px;
+	text-align:center;
+}

@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE>
+<html  lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-width=1">
+<title>Focus</title>
+<link type="text/css" href="{% static 'blog/stylesheet.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="images/jquery.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="bg-success">
+
+<div class="container-fluid">
+<div class="well well-lg">
+    <div class="row">
+		<div class="col-sm-3">
+			<img src="{% static 'blog/images/logo2.png' %}" width="500px" height="90px">
+		</div>
+		<div class="col-sm-5"></div>
+		<div class="col-sm-4">
+			<form action="search.php" class="form-inline input-group" align="center" style="padding-top:20px;">
+				<input type="text" name="search_post" placeholder="Search" class="form-control">
+				<div class="input-group-btn">
+					<button type="submit button" name="search" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+    
+  <div class="navbar navbar-inverse">
+     <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+           <span class="icon-bar"></span> 
+	   <span class="icon-bar"></span>
+	   <span class="icon-bar"></span>  
+
+        </button>
+         
+      </div>
+           <div class="navbar-collapse collapse">
+	      <ul class="nav navbar-nav"  style="font-size:35px;">
+		<li><a href="#"><i>Home</i></a></li>
+		<li><a href="#"><i>Mobiles</i></a></li>
+		<li><a href="#"><i>Laptops</i></a></li>
+		<li><a href="#"><i>Recharge</i></a></li>
+		<li><a href="#"><i>Story/Poem</i></a></li>
+              </ul>
+     </div>
+
+
+</div>
+
+<div class="row">
+<div class="col-sm-1">
+
+</div>
+<div class="col-sm-8">
+     <!--<div class="panel panel-body">
+     <h1><b><a href="">Get Ditto TV 1 Month Subscription for just 1₹</a></b></h1>
+	 <p style="font-size:18px;">
+		Posted By:
+	 </p>
+	 <center><img src="{% static 'blog/images/logo2.png' %}" class="img-responsive img-thumbnail" style="height:200px"></center></br>
+	 <p>
+		Now enjoy Live TV on your Mobile with DITTO Tv app,get 100+ Live channels,2300+ TV programs,High definition videos and Playback, you can avail Ditto TV 1 month subscription just paying 1₹ instead to 20₹,the steps to avail this offers are as follows......
+	 </p>
+     <br><h4><b>Steps</b></h4>
+     <p> Head to This link > Input your 10 Digit Mobile number and click next > Enter the OTP received,and click Buy now,
+       Finally 1₹ will be deducted from your Freecharge wallet,against your 1 Month subscription of Ditto TV.</p>
+      <br><h4><b>Other info:-</b></h4>
+    <p>Offer valid till 28th Feb 2017,Offer applicable only for Freecharge users,Offer is applicable only once per user,the subscription will be valid for 30 days,
+        Post Purchase,you can Login with the mobile number provided during Step 1, at The Ditto TV app.</p>
+
+</div>-->
+{% for post in search_result %}
+
+	<div class="panel panel-body">
+		<h1><b><a href="{% url 'pages' post_id=post.id%}">{{post.fields.Post_name}}</a></b></h1>
+		<p style="font-size:18px;">
+			Posted By: {{post.fields.Posted_by}}
+		</p>
+		<center><img src="{{post.fields.Post_image.0.url}}" class="img-responsive img-thumbnail" style="height:200px"></center></br>
+		<p>
+			{{post.fields.Post_details|truncatewords:40}}
+		</p>
+		<a href="{% url 'pages' post_id=post.id%}"><p>Continue Reading</a>
+	</div>
+	
+{% endfor %}
+
+
+</div>
+<div class="col-sm-3">
+	<div class="jumbotron" style="background-color:darkblue;">
+		<center>
+			<form method="post" action="" class="form-horizontal">
+				<label for="email"><p><b style="color:white;">Subscribe Our Newsletters</b></p></label>
+				<input type="text" name="email" class="form-control"  placeholder="Enter your Email"></br>
+				<button type="submit button" name="submit" class="btn btn-success">Subscribe</button>	
+			</form>
+		</center>	</br>
+	</div>
+
+	<div class="panel panel-primary">
+
+		<div class="panel-heading" align="center">
+			<h1>Recent posts</h1>
+
+		</div>
+		{% for post in search_result %}
+		<div class="panel-body">
+			<p><b><a href="{% url 'pages' post_id=post.id%}">{{post.fields.Post_name}}</a></b></p><br>
+			<center><img src="{{post.fields.Post_image.0.url}}" class="img-responsive img-thumbnail" style="height:100px"></center>
+		</div>
+		{% endfor %}
+	</div>   
+	   
+
+</div>
+
+
+
+</div>
+
+<div class="jumbotron">
+ <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+      
+ 	<h2 style="text-align:center;">Contact Us</h2>
+     <p style="text-align:center;"><b>+91-98640-11111</b><br>
+Rangia , Kamrup<br>
+Assam , 781381 <br>
+contact@pagalblog.com</p>
+    </div>
+    <div class="col-sm-3">
+      <h2 style="text-align:center;">Connect With Us</h2>
+   <ul id="connect">
+<li><a href="#"><img class="img-responsive" src="http://www.w3newbie.com/wp-content/uploads/facebook1.png" </a>   </li>
+<li><a href="#"><img class="img-responsive" src="http://www.w3newbie.com/wp-content/uploads/googleplus.png" </a>   </li>
+<li><a href="#"><img class="img-responsive" src="http://www.w3newbie.com/wp-content/uploads/twitter1.png" </a>   </li>
+<li><a href="#"><img class="img-responsive" src="http://www.w3newbie.com/wp-content/uploads/youtube1.png" </a>   </li>
+</ul>
+
+    </div>
+    <div class="col-sm-3"></div>
+ </div>
+</div>
+
+</div>
+
+</body>
+</html>
