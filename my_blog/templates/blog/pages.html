@@ -16,16 +16,16 @@
 <div class="well well-lg">
     <div class="row">
 		<div class="col-sm-3">
-			<img src="{% static 'blog/images/logo2.png' %}" width="500px" height="90px">
+			<a href="/"><img src="{% static 'blog/images/logo2.png' %}" width="500px" height="90px"></a>
 		</div>
 		<div class="col-sm-5"></div>
 		<div class="col-sm-4">
-			<!--<form action="search.php" class="form-inline input-group" align="center" style="padding-top:20px;">
+			<form action="/" class="form-inline input-group" align="center" style="padding-top:20px;">
 				<input type="text" name="search_post" placeholder="Search" class="form-control">
 				<div class="input-group-btn">
 					<button type="submit button" name="search" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
 				</div>
-			</form>-->
+			</form>
 		</div>
 	</div>
 </div>
@@ -43,7 +43,7 @@
       </div>
            <div class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav"  style="font-size:35px;">
-		<li><a href="#"><i>Home</i></a></li>
+		<li><a href="/"><i>Home</i></a></li>
 		<li><a href="#"><i>Mobiles</i></a></li>
 		<li><a href="#"><i>Laptops</i></a></li>
 		<li><a href="#"><i>Recharge</i></a></li>
@@ -60,20 +60,18 @@
 </div>
 <div class="col-sm-8">
 
-{% for detail in detail_result1 %}
 
 	<div class="panel panel-body">
-		<h1><b><a href="">{{detail.fields.Post_name}}</a></b></h1>
+		<h1><b><a href="">{{detail_result1.fields.Post_name}}</a></b></h1>
 		<p style="font-size:18px;">
-			Posted By: {{detail.fields.Posted_by}}
+			Posted By: {{detail_result1.fields.Posted_by}}
 		</p>
-		<center><img src="{{detail.fields.Post_image.0.url}}" class="img-responsive img-thumbnail" style="height:200px"></center></br>
+		<center><img src="{{detail_result1.fields.Post_image.0.url}}" class="img-responsive img-thumbnail" style="height:200px"></center></br>
 		<p>
-			{{detail.fields.Post_details}}
+			{{detail_result1.fields.Post_details}}
 		</p>
 	</div>
 	
-{% endfor %}
 
 
 </div>
@@ -94,10 +92,9 @@
 			<h1>Recent posts</h1>
 
 		</div>
-		{% for detail in detail_result %}
+		{% for res in all_results %}
 		<div class="panel-body">
-			<p><b><a>{{detail.fields.Post_name}}</a></b></p><br>
-			<center><img src="{{detail.fields.Post_image.0.url}}" class="img-responsive img-thumbnail" style="height:100px"></center>
+			<p><b><a href="{% url 'pages' post_id=res.id%}">{{res.fields.Post_name}}</a></b></p><br>
 		</div>
 		{% endfor %}
 	</div>   

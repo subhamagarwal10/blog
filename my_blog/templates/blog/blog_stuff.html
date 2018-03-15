@@ -16,11 +16,11 @@
 <div class="well well-lg">
     <div class="row">
 		<div class="col-sm-3">
-			<img src="{% static 'blog/images/logo2.png' %}" width="500px" height="90px">
+			<a href="/"><img src="{% static 'blog/images/logo2.png' %}" width="500px" height="90px"></a>
 		</div>
 		<div class="col-sm-5"></div>
 		<div class="col-sm-4">
-			<form action="search.php" class="form-inline input-group" align="center" style="padding-top:20px;">
+			<form action="" class="form-inline input-group" align="center" style="padding-top:20px;">
 				<input type="text" name="search_post" placeholder="Search" class="form-control">
 				<div class="input-group-btn">
 					<button type="submit button" name="search" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
@@ -43,8 +43,8 @@
       </div>
            <div class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav"  style="font-size:35px;">
-		<li><a href="#"><i>Home</i></a></li>
-		<li><a href="#"><i>Mobiles</i></a></li>
+		<li><a href="/"><i>Home</i></a></li>
+		<li><a href="{% url 'pages' post_id='mobile'%}"><i>Mobiles</i></a></li>
 		<li><a href="#"><i>Laptops</i></a></li>
 		<li><a href="#"><i>Recharge</i></a></li>
 		<li><a href="#"><i>Story/Poem</i></a></li>
@@ -111,10 +111,9 @@
 			<h1>Recent posts</h1>
 
 		</div>
-		{% for post in search_result %}
+		{% for res in all_results %}
 		<div class="panel-body">
-			<p><b><a href="{% url 'pages' post_id=post.id%}">{{post.fields.Post_name}}</a></b></p><br>
-			<center><img src="{{post.fields.Post_image.0.url}}" class="img-responsive img-thumbnail" style="height:100px"></center>
+			<p><b><a href="{% url 'pages' post_id=res.id%}">{{res.fields.Post_name}}</a></b></p><br>
 		</div>
 		{% endfor %}
 	</div>   
